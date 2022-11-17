@@ -1,0 +1,23 @@
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date{"yyyy-MM-dd'T'HH:mm:ss.SSSZ",Europe/Moscow} %logger [%mdc] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="akka.persistence.cassandra" level= "INFO"/>
+    <logger name="com.datastax.oss.driver" level= "INFO"/>
+    <logger name="com.datastax.driver" level= "INFO"/>
+    <logger name="com.atyutin" level="INFO"/>
+
+    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>8192</queueSize>
+        <neverBlock>true</neverBlock>
+        <appender-ref ref="STDOUT" />
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>
